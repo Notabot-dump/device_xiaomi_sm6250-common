@@ -29,3 +29,6 @@
 
 # Sys Files (wakeup)
 /sys/devices/virtual/diag/diag/wakeup[0-99]+(/.*)? u:object_r:sysfs_wakeup:s0
+
+# File In Root fs
+/persist(/.*)?                                  u:object_r:persist_file:s0
