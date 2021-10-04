@@ -30,14 +30,12 @@ AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_SVA_MULTI_STAGE := true
-#AUDIO_FEATURE_ENABLED_AHAL_EXT := true
-
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
 AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
+
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 BOARD_USES_ALSA_AUDIO := true
 
-# Audio policy
 USE_CUSTOM_AUDIO_POLICY := 1
 USE_XML_AUDIO_POLICY_CONF := 1
 
@@ -72,6 +70,21 @@ BOARD_HAS_QCA_FM_SOC := cherokee
 BOARD_HAVE_QCOM_FM := true
 
 # Kernel
+BOARD_KERNEL_CMDLINE += \
+    androidboot.console=ttyMSM0 \
+    androidboot.hardware=qcom \
+    androidboot.memcg=1 \
+    androidboot.usbcontroller=a600000.dwc3 \
+    cgroup.memory=nokmem,nosocket \
+    console=ttyMSM0,115200n8 \
+    earlycon=msm_geni_serial,0xa88000 \
+    loop.max_part=7 \
+    lpm_levels.sleep_disabled=1 \
+    msm_rtb.enabled=1 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    swiotlb=1
+
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_PAGESIZE := 4096
@@ -90,21 +103,6 @@ TARGET_KERNEL_CONFIG := cust_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6250
 TARGET_COMPILE_WITH_MSM_KERNEL = true
 
-BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
-BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += androidboot.memcg=1
-BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
-BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem,nosocket
-BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8
-BOARD_KERNEL_CMDLINE += earlycon=msm_geni_serial,0xa88000
-BOARD_KERNEL_CMDLINE += loop.max_part=7
-BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
-BOARD_KERNEL_CMDLINE += msm_rtb.enabled=1
-BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
-BOARD_KERNEL_CMDLINE += service_locator.enable=1
-BOARD_KERNEL_CMDLINE += swiotlb=1
-BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000
-BOARD_KERNEL_CMDLINE += kpti=off
 # HIDL
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
@@ -153,7 +151,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 
 BOARD_USES_METADATA_PARTITION := true
-
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Platform
@@ -163,7 +160,6 @@ TARGET_BOARD_PLATFORM := atoll
 TARGET_POWERHAL_MODE_EXT := $(COMMON_PATH)/power/power-mode.cpp
 
 # Properties
-TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
 TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
@@ -194,10 +190,8 @@ VENDOR_SECURITY_PATCH := 2020-07-01
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
-
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
 
 # Treble
 BOARD_VNDK_VERSION := current
