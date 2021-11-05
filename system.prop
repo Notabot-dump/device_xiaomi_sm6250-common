@@ -3,7 +3,6 @@ ro.apex.updatable=true
 
 # ART
 dalvik.vm.dex2oat-filter=everything
-dalvik.vm.image-dex2oat-filter=everything
 dalvik.vm.boot-dex2oat-cpu-set=0,1,2,3,4,5,6,7
 dalvik.vm.boot-dex2oat-threads=8
 dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6,7
@@ -15,8 +14,6 @@ dalvik.vm.image-dex2oat-threads=8
 media.stagefright.audio.sink=384
 af.fast.track.multiplier=2
 vendor.audio_hal.period_multiplier=3
-audio.offload.buffer.size.kb=384
-vendor.mm.enable.qcom_parser=80255037
 persist.mm.enable.prefetch=true
 ro.mediacodec.min_sample_rate=7350
 ro.mediacodec.max_sample_rate=2822400
