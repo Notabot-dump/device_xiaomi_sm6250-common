@@ -305,7 +305,8 @@ PRODUCT_PACKAGES += \
 
 # QTI
 TARGET_COMMON_QTI_COMPONENTS := \
-    bt
+    bt \
+    telephony
 
 # Radio
 PRODUCT_PACKAGES += \
